@@ -5,6 +5,11 @@ RobotArmApp::RobotArmApp() {}
 
 void RobotArmApp::onTimerTick()
 {
+    if (sleepTickCnt > 0)
+    {
+        sleepTickCnt--;
+        return;
+    }
     switch (curMode)
     {
     case Mode::mode_backup:
@@ -15,15 +20,23 @@ void RobotArmApp::onTimerTick()
         }
         break;
     case Mode::mode_running:
-        for (int i = 0; i < 3; i++)
+        if (currentTick < tickCountInOneMove)
         {
-            doStepperEvent(robotSteppers[i]);
+            for (int i = 0; i < 3; i++)
+            {
+                doStepperEvent(robotSteppers[i]);
+            }
+            currentTick++;
+        }
+        else
+        {
+            // prepareNextMove();
+            // currentTick = 0;
         }
         // if (currentTick == tickCountInOneMove)
         // {
         //     prepareNextMove();
         // }
-        currentTick++;
         break;
     default:
         break;
@@ -38,8 +51,8 @@ void RobotArmApp::setMode(Mode mode)
 void RobotArmApp::init()
 {
     robotSteppers[0].init(0, RobotArmStepper1_Inverted);
-    robotSteppers[1].init(0, RobotArmStepper2_Inverted);
-    robotSteppers[2].init(0, RobotArmStepper3_Inverted);
+    robotSteppers[1].init(1, RobotArmStepper2_Inverted);
+    robotSteppers[2].init(2, RobotArmStepper3_Inverted);
 #ifdef RobotStepper_Use_A4988
     RobotStepper::setDivide(RobotStepper::divide_a4988_8);
 #endif
@@ -50,6 +63,9 @@ void RobotArmApp::setMotorEnable(char enable)
     if (!enable)
     {
         this->curMode = Mode::mode_backup;
+        robotSteppers[0].init(0, RobotArmStepper1_Inverted);
+        robotSteppers[1].init(1, RobotArmStepper2_Inverted);
+        robotSteppers[2].init(2, RobotArmStepper3_Inverted);
     }
     for (int i = 0; i < 3; i++)
     {
@@ -99,17 +115,20 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper)
         if (limitSwitchActivatedCnt_LeftArm == limitSwitchActivatedCnt_MAX)
         {
             curMode = Mode::mode_running;
-            for (int i = 0; i < 3; i++)
-            {
-                robotSteppers[i].setDirection(direction_increase);
-            }
+            sleepTickCnt = 30000;
+            prepareNextMove();
+            // for (int i = 0; i < 3; i++)
+            // {
+            //     robotSteppers[i].setDirection(direction_increase);
+            // }
         }
         break;
     }
     //运行模式
     case Mode::mode_running:
         // if (stepper.curStepInOneMove != stepper.totalStepInOneMove)
-        if (currentTick % 5 == 0) //脉冲上升
+        // if (currentTick % 5 == 0)
+        if (currentTick == (tickCountInOneMove - 1) * stepper.curStepInOneMove / stepper.totalStepInOneMove) //脉冲上升
         {
             switch (stepper.getDir())
             {
@@ -118,12 +137,14 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper)
                 {
                     stepper.setStepPin(1);
                     stepper.curStepInGlobal--;
+                    stepper.curStepInOneMove++;
                 }
                 break;
 
             case direction_increase:
                 stepper.setStepPin(1);
                 stepper.curStepInGlobal++;
+                stepper.curStepInOneMove++;
                 break;
             }
         }
@@ -165,7 +186,7 @@ void RobotArmApp::prepareNextMove()
     //tick计数清0
     currentTick = 0;
     //先赋值下一次步进完成所需要的时间 tickCountInOneMove
-    this->tickCountInOneMove = 1;
+    this->tickCountInOneMove = 50000;
 
     for (int i = 0; i < 3; i++)
     {
@@ -186,7 +207,7 @@ void RobotArmApp::calcAndSetStep(RobotStepper &stepper)
         break;
     }
     //根据stepper的id来计算对应的步进值
-    int step;
+    int step = 2150;
     stepper.setDirection((Direction)(step > 0));
     stepper.totalStepInOneMove = step > 0 ? step : -step;
 }

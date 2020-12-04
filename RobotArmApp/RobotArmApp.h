@@ -3,10 +3,25 @@
 #ifndef __ROBOTARMAPP_H__
 #define __ROBOTARMAPP_H__
 #include "../RobotStepper/RobotStepper.h"
-
+/***********************************************************
+ * 
+ * direction invert
+ * 方向控制引脚翻转标志位，用于解决硬件接线导致实际方向相反的情况
+ * 
+ * *********************************************************/
 #define RobotArmStepper1_Inverted 0
 #define RobotArmStepper2_Inverted 0
 #define RobotArmStepper3_Inverted 0
+/***********************************************************
+ * 
+ * reference step 
+ * 基准步进值，用于运行过程中换算出步进电机需要走的步进值
+ * 
+ * *********************************************************/
+//45度脚，8细分下的步进数
+#define RobotArmStepCnt_PI_4_divide8 1400
+//左侧控制臂垂直时，8细分下的步进值
+#define RobotArmStepCnt_LeftArmVertical_divide8 2150
 
 class RobotArmModel
 {
@@ -84,6 +99,7 @@ private:
     int tickCountInOneMove = 0;
     //当前tick计数
     int currentTick = 0;
+    int sleepTickCnt = 0;
 
     void prepareNextMove();
     void doStepperEvent(RobotStepper &stepper);

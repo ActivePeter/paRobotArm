@@ -31,11 +31,11 @@ void RobotStepper::setDirection(Direction dir)
     direction = dir;
     if (dirInverted)
     {
-        setDirPin(dir);
+        setDirPin(!dir);
     }
     else
     {
-        setDirPin(!dir);
+        setDirPin((char)dir);
     }
 }
 
