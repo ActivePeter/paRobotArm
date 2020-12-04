@@ -4,32 +4,6 @@
 /***********************************************
  * 
  * 
- * 设置mcu宏
- * 
- * 
- * **********************************************/
-// #ifndef ESP32
-// #define ESP32
-// #endif
-
-// #ifndef MSP432P
-// #define MSP432P
-// #endif
-
-// #ifndef STM32_F4
-// #define STM32_F4
-// #endif
-
-#ifndef STM32_H7
-#define STM32_H7
-#endif
-
-// #ifndef TM4C123G
-// #define TM4C123G
-// #endif
-/***********************************************
- * 
- * 
  * 显示器外设选择宏
  * 
  * 

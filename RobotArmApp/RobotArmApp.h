@@ -3,6 +3,11 @@
 #ifndef __ROBOTARMAPP_H__
 #define __ROBOTARMAPP_H__
 #include "../RobotStepper/RobotStepper.h"
+
+#define RobotArmStepper1_Inverted 0
+#define RobotArmStepper2_Inverted 0
+#define RobotArmStepper3_Inverted 0
+
 class RobotArmModel
 {
 public:
@@ -41,6 +46,7 @@ public:
      *      硬件层
      * 
      **************************************/
+    const uint16_t limitSwitchActivatedCnt_MAX = 100; //用于消抖的限位开关计数值
     char getLimitSwitch_LeftArm();
     char getLimitSwitch_RightArm();
     void setMotorEnable(char enable);

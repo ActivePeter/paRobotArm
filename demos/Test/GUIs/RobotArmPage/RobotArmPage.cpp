@@ -72,23 +72,23 @@ namespace GUI
             {
             case 0:
                 pa_snprintf(buf, 30, "divide_1 selected\r\n");
-                RobotStepper::setDivide(RobotStepper::Divide_a4988_1);
+                RobotStepper::setDivide(RobotStepper::divide_a4988_1);
                 break;
             case 1:
                 pa_snprintf(buf, 30, "divide_2 selected\r\n");
-                RobotStepper::setDivide(RobotStepper::Divide_a4988_2);
+                RobotStepper::setDivide(RobotStepper::divide_a4988_2);
                 break;
             case 2:
                 pa_snprintf(buf, 30, "divide_4 selected\r\n");
-                RobotStepper::setDivide(RobotStepper::Divide_a4988_4);
+                RobotStepper::setDivide(RobotStepper::divide_a4988_4);
                 break;
             case 3:
                 pa_snprintf(buf, 30, "divide_8 selected\r\n");
-                RobotStepper::setDivide(RobotStepper::Divide_a4988_8);
+                RobotStepper::setDivide(RobotStepper::divide_a4988_8);
                 break;
             case 4:
                 pa_snprintf(buf, 30, "divide_16 selected\r\n");
-                RobotStepper::setDivide(RobotStepper::Divide_a4988_16);
+                RobotStepper::setDivide(RobotStepper::divide_a4988_16);
                 break;
             default:
                 break;
