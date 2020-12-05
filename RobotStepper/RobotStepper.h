@@ -9,10 +9,9 @@ class RobotStepper
 {
 public:
     RobotStepper();
-    int curStepInGlobal = 0;
+    int curStepInGlobal = 0; //全局的step(几何计算结果也是全局的)，与当前全局做差即为需要步进的totalStepInOneMove，
     int curStepInOneMove = 0;
     int totalStepInOneMove = 0;
-    int stepInGlobal = 0; //全局的step(几何计算结果也是全局的)，与当前全局做差即为需要步进的totalStepInOneMove，
 
     void init(char id, bool dirInverted);
     char getId();

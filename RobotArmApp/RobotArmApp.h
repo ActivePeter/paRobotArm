@@ -18,26 +18,29 @@
  * 基准步进值，用于运行过程中换算出步进电机需要走的步进值
  * 
  * *********************************************************/
-//45度脚，8细分下的步进数
-#define RobotArmStepCnt_PI_4_divide8 1400
-//左侧控制臂垂直时，8细分下的步进值
+//45度脚，8细分下的步进数（单位基准）
+#define RobotArmStepCnt_PI_4_divide8 1340
+//左侧控制臂垂直时，8细分下的步进值（坐标基准）
 #define RobotArmStepCnt_LeftArmVertical_divide8 2150
+//右侧控制臂垂直时，8细分下的步进值（坐标基准）
+#define RobotArmStepCnt_RightArmVertical_divide8 1544
 
 class RobotArmModel
 {
 public:
     RobotArmModel();
-    const float l1 = 1;   //left motor connected arm len (arm1)
-    const float l2_y = 1; //right motor connectd arm len (arm2)
-    const float l2_x = 1; //the xoffset of head to arm2
-    float l2;             //modeled arm len, calc from l2_y & l2_x
-    float theata3;        //in model angle fix, calc from 12_y & 12_x
-    float theata1;        //(arm1 angle)
-    float theata2;        //(arm2 angle)
-    void recalcVeticalPlane(float x, float y);
+
+    void recalcVeticalPlane(float x, float y, int &m1Step, int &m2Step, int &m3Step);
     void initDatas();
 
 private:
+    const float l1 = 200;   //left motor connected arm len (arm1)
+    const float l2_y = 212; //right motor connectd arm len (arm2)
+    const float l2_x = 28;  //the xoffset of head to arm2
+    float l2;               //modeled arm len, calc from l2_y & l2_x
+    float theata3;          //in model angle fix, calc from 12_y & 12_x
+    float theata1;          //(arm1 angle)
+    float theata2;          //(arm2 angle)
     float l2Square;
     float l1Square;
 };
@@ -67,10 +70,9 @@ public:
     void setMotorEnable(char enable);
 
 private:
+    RobotArmModel robotArmModel;
     Mode curMode;
     RobotStepper robotSteppers[3];
-
-    bool pinStateOnBackupMode = false;
 
     //电机1当前步进数
     int step1 = 0;
@@ -102,8 +104,8 @@ private:
     int sleepTickCnt = 0;
 
     void prepareNextMove();
-    void doStepperEvent(RobotStepper &stepper);
-    void calcAndSetStep(RobotStepper &stepper);
+    void doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMode);
+    void setStep(RobotStepper &stepper, int m1step, int m2step, int m3step);
 };
 
 #endif // __ROBOTARMAPP_H__

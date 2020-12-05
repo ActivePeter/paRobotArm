@@ -9,6 +9,9 @@ void RobotStepper::init(char id1, bool dirInverted1)
     setEnPin(0);
     setDirection(direction_decrease);
     setStepPin(0);
+    curStepInGlobal = 0;
+    curStepInOneMove = 0;
+    totalStepInOneMove = 0;
 }
 
 void RobotStepper::setId(char a)
