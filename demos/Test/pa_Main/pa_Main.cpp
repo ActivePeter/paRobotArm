@@ -50,6 +50,7 @@ void pa_Main()
      * screen init
      * 
      * ***********/
+    pa_spiInit();
     touch.init(240, 320, 210, 3800, 451, 3884, 40);
     ili9341.init(pa_ILI9341::Rotation::Rotation_VERTICAL_2);
     /*************
@@ -89,7 +90,7 @@ void pa_Main()
 }
 void tim_100us_tick()
 {
-    robotArm.onTimerTick();
+//    robotArm.onTimerTick();
     // robotArm.onTimerTick();
 }
 void tim_1ms_tick()
