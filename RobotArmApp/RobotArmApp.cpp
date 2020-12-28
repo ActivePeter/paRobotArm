@@ -40,7 +40,7 @@ void RobotArmApp::onTimerTick()
         }
         else
         {
-            prepareNextMove();
+            prepareNextMove(false);
         }
         // if (currentTick == tickCountInOneMove)
         // {
@@ -132,7 +132,7 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
         {
             curMode = Mode::mode_running;
             sleepTickCnt = 30000;
-            prepareNextMove();
+            prepareNextMove(true);
             // for (int i = 0; i < 3; i++)
             // {
             //     robotSteppers[i].setDirection(direction_increase);
@@ -201,39 +201,53 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
  *   一段路程切片走完后准备下一段路径
  * 
  * **********************************/
-void RobotArmApp::prepareNextMove()
+void RobotArmApp::prepareNextMove(bool firstRun)
 {
-
-    //tick计数清0
-    currentTick = 0;
-    //先赋值下一次步进完成所需要的时间 tickCountInOneMove
-    this->tickCountInOneMove = 50000 / 5;
-    int step1, step2, step3;
-
-    static char curStarPoint = 0;
-    static char lineStep = 0;
-    float angle = (int)curStarPoint * 4 / 5.0 * PI;
-    float angle2 = (int)(curStarPoint + 1) * 4 / 5.0 * PI;
-    float r = 25;
-    float x1 = 200 + r * cosf(angle);
-    float y1 = 0 + r * sinf(angle);
-    float x2 = 200 + r * cosf(angle2);
-    float y2 = 0 + r * sinf(angle2);
-    robotArmModel.recalcVeticalPlane(x1 + (lineStep + 1) * (x2 - x1) / 5, y1 + (lineStep + 1) * (y2 - y1) / 5, step1, step2, step3);
-
-    for (int i = 0; i < 3; i++)
+    static RobotArmPoint3D lastPoint;
+    RobotArmPoint3D targetPoint;
+    bool hasPoint = pointBuff.getNextPoint(targetPoint);
+    if (hasPoint)
     {
-        //步进值计数复位  stepper.curStepInOneMove;
-        robotSteppers[i].curStepInOneMove = 0;
-        //然后计算三个步进所需要的步进数 stepper.totalStepInOneMove
-        setStep(robotSteppers[i], step1, step2, step3);
-    }
-    lineStep++;
-    if (lineStep == 5)
-    {
-        lineStep = 0;
-        curStarPoint++;
-        curStarPoint %= 5;
+        //tick计数清0
+        currentTick = 0;
+        //先赋值下一次步进完成所需要的时间 tickCountInOneMove
+        if (firstRun)
+        {
+            this->tickCountInOneMove = 50000; // / 5;
+        }
+        else
+        {
+            this->tickCountInOneMove = 50000; // / 5;
+        }
+
+        int step1, step2, step3;
+
+        // static char curStarPoint = 0;
+        // static char lineStep = 0;
+        // float angle = (int)curStarPoint * 4 / 5.0 * PI;
+        // float angle2 = (int)(curStarPoint + 1) * 4 / 5.0 * PI;
+        // float r = 25;
+        // float x1 = 200 + r * cosf(angle);
+        // float y1 = 0 + r * sinf(angle);
+        // float x2 = 200 + r * cosf(angle2);
+        // float y2 = 0 + r * sinf(angle2);
+
+        robotArmModel.recalcVeticalPlane(targetPoint.x, targetPoint.y, step1, step2, step3);
+
+        for (int i = 0; i < 3; i++)
+        {
+            //步进值计数复位  stepper.curStepInOneMove;
+            robotSteppers[i].curStepInOneMove = 0;
+            //然后计算三个步进所需要的步进数 stepper.totalStepInOneMove
+            setStep(robotSteppers[i], step1, step2, step3);
+        }
+        // lineStep++;
+        // if (lineStep == 5)
+        // {
+        //     lineStep = 0;
+        //     curStarPoint++;
+        //     curStarPoint %= 5;
+        // }
     }
 
     //设置三个步进的步进方向

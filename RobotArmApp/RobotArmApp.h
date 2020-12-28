@@ -144,7 +144,7 @@ private:
     int currentTick = 0;
     int sleepTickCnt = 0;
 
-    void prepareNextMove();
+    void prepareNextMove(bool firstRun);
     void doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMode);
     void setStep(RobotStepper &stepper, int m1step, int m2step, int m3step);
 };

@@ -16,6 +16,7 @@ bool RobotArmPointBuff::getNextPoint(RobotArmPoint3D &p)
     {
         p = buff[headIndex];
         headIndex++;
+        headIndex %= RobotArmPointBuffLen;
         pointCnt--;
     }
 
