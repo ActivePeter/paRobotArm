@@ -15,6 +15,7 @@ namespace GUI
 {
     lv_obj_t *robotArmPage;
     lv_obj_t *RobotArmPage_LimitSwitch;
+    lv_obj_t *RobotArmPage_EnableSwitch;
     void dropdown_ChooseDivide(void);
     void switch_MotorEnable(void);
 
@@ -42,6 +43,7 @@ namespace GUI
         pa_snprintf(buf, 20, "L:%d R:%d", l, r);
         lv_label_set_text(RobotArmPage_LimitSwitch, buf);
     }
+
     void RobotArmPage_init()
     {
         addMenuBtn(menuBtn_robotArmPage_event_handler, "RobotArm");
@@ -129,18 +131,33 @@ namespace GUI
         }
     }
 
+    void RobotArm_setMotorEnable_guiCallback(char enable)
+    {
+        if (enable)
+        {
+            // lv_switch
+            lv_switch_on(RobotArmPage_EnableSwitch, LV_ANIM_ON);
+        }
+        else
+        {
+            lv_switch_off(RobotArmPage_EnableSwitch, LV_ANIM_ON);
+        }
+    }
     void switch_MotorEnable(void)
     {
         /*Create a switch and apply the styles*/
-        lv_obj_t *sw1 = lv_switch_create(robotArmPage, NULL);
+        RobotArmPage_EnableSwitch = lv_switch_create(robotArmPage, NULL);
         // lv_obj_align(sw1, NULL, LV_ALIGN_CENTER, 0, -50);
-        lv_obj_set_event_cb(sw1, switch_MotorEnable_event);
-        lv_switch_on(sw1, LV_ANIM_ON);
-        lv_obj_set_pos(sw1, 140, 2);
+        lv_obj_set_event_cb(RobotArmPage_EnableSwitch, switch_MotorEnable_event);
+        lv_switch_on(RobotArmPage_EnableSwitch, LV_ANIM_ON);
+        lv_obj_set_pos(RobotArmPage_EnableSwitch, 140, 2);
+
+        RobotArmApp::instance.userInterface.setMotorEnable_setGuiCallback(RobotArm_setMotorEnable_guiCallback);
         // /*Copy the first switch and turn it ON*/
         // lv_obj_t *sw2 = lv_switch_create(lv_scr_act(), sw1);
         // lv_switch_on(sw2, LV_ANIM_ON);
         // lv_obj_align(sw2, NULL, LV_ALIGN_CENTER, 0, 50);
     }
 } // namespace GUI
+
 #endif

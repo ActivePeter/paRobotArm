@@ -1,5 +1,7 @@
 #include "pa_Main.h"
+
 #ifdef RobotArmApp_demo_Test
+#include "pa_MsgCenter.h"
 //from pa_CommonLib
 #include "pa_CommonLib/src/drv/pa_CommonDrv/pa_CommonDrv.h"
 #include "pa_CommonLib/src/service/graphic/lvgl/lvgl.h"
@@ -25,25 +27,27 @@ int run = 0;
 // int encoder2_delta = 0;
 // extern TIM_HandleTypeDef htim3, htim4, htim5;
 //
-
+int CDCRxDataLen;
+extern uint8_t UserRxBufferFS[];
 namespace TimTasks
 {
     bool flag_1s = false;
     void loop()
     {
-        if (flag_1s)
+        if (flag_1s && CDCRxDataLen > 0)
         {
             flag_1s = false;
-            char buf[20];
-            pa_snprintf(buf, 20, "l f: %d %d\r\n", robotArm.getLimitSwitch_LeftArm(), robotArm.getLimitSwitch_RightArm());
-            pa_Debug(buf);
-            pa_Debug("1s is ticked\r\n");
+            char buf[30];
+            // pa_snprintf(buf, 30, "l f: %d %d %d\r\n", robotArm.getLimitSwitch_LeftArm(), robotArm.getLimitSwitch_RightArm(), CDCRxDataLen);
+            pa_Debug_len((const char *)UserRxBufferFS, CDCRxDataLen);
+            // pa_Debug("1s is ticked\r\n");
         }
     }
 } // namespace TimTasks
 
 void pa_Main()
 {
+    pa_MsgCenter_initThread();
     pa_setTimerCallback(tim_100us_tick, tim_1ms_tick);
     /*************
      * 
@@ -90,7 +94,7 @@ void pa_Main()
 }
 void tim_100us_tick()
 {
-//    robotArm.onTimerTick();
+    robotArm.onTimerTick();
     // robotArm.onTimerTick();
 }
 void tim_1ms_tick()

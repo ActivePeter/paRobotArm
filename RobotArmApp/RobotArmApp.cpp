@@ -1,4 +1,5 @@
 #include "RobotArmApp.h"
+#include "RobotArm_UserInterface.h"
 #include "pa_CommonLib/src/drv/pa_PWM/pa_PWM.h"
 #include "pa_CommonLib/src/util/pa_Math/pa_Math.h"
 
@@ -16,8 +17,14 @@ void RobotArmApp::onTimerTick()
     switch (curMode)
     {
     case Mode::mode_backup:
-        pinStateOnBackupMode = !pinStateOnBackupMode;
-        for (int i = 0; i < 3; i++)
+    {
+        static char backUpCnt = 0;
+        pinStateOnBackupMode = backUpCnt > 0;
+        backUpCnt++;
+        backUpCnt %= 5;
+    }
+        // pinStateOnBackupMode = !pinStateOnBackupMode;
+        for (int i = 0; i < 2; i++)
         {
             doStepperEvent(robotSteppers[i], pinStateOnBackupMode);
         }
@@ -25,7 +32,7 @@ void RobotArmApp::onTimerTick()
     case Mode::mode_running:
         if (currentTick < tickCountInOneMove)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 doStepperEvent(robotSteppers[i], false);
             }
@@ -249,4 +256,11 @@ void RobotArmApp::setStep(RobotStepper &stepper, int m1step, int m2step, int m3s
     step = step - stepper.curStepInGlobal;
     stepper.setDirection((Direction)(step > 0));
     stepper.totalStepInOneMove = step > 0 ? step : -step;
+}
+
+bool RobotArmPointBuff::getNextPoint(RobotArmPoint3D &p)
+{
+    bool res = pointCnt > 0;
+
+    return res;
 }

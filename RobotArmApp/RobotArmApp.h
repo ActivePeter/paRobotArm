@@ -3,6 +3,7 @@
 #ifndef __ROBOTARMAPP_H__
 #define __ROBOTARMAPP_H__
 #include "../RobotStepper/RobotStepper.h"
+#include "RobotArm_UserInterface.h"
 /***********************************************************
  * 
  * direction invert
@@ -24,6 +25,25 @@
 #define RobotArmStepCnt_LeftArmVertical_divide8 2150
 //右侧控制臂垂直时，8细分下的步进值（坐标基准）
 #define RobotArmStepCnt_RightArmVertical_divide8 1544
+#define RobotArmPointBuffLen 8
+typedef struct
+{
+    int x;
+    int y;
+    int z;
+} RobotArmPoint3D;
+
+class RobotArmPointBuff
+{
+public:
+    void addPoint(RobotArmPoint3D point);
+    bool getNextPoint(RobotArmPoint3D &p);
+
+private:
+    int pointCnt = 0;
+    int headIndex = 0;
+    RobotArmPoint3D buff[RobotArmPointBuffLen];
+};
 
 class RobotArmModel
 {
@@ -44,11 +64,27 @@ private:
     float l2Square;
     float l1Square;
 };
+// class RobotArm_UserInterface;
+// class RobotArmApp;
+// class RobotArm_UserInterface
+// {
+// public:
+//     RobotArm_UserInterface();
+
+//     void setMotorEnable_do(char enable);
+//     void setMotorEnable_setGuiCallback(void (*callback)(char enable));
+
+// private:
+//     RobotArmApp &robotArm = RobotArmApp::instance;
+//     void (*setMotorEnable_guiCallback)(char enable);
+// };
 class RobotArmApp
 {
 public:
     RobotArmApp();
+
     static RobotArmApp instance;
+    RobotArm_UserInterface userInterface;
     void onTimerTick();
 
     enum Mode
@@ -71,6 +107,7 @@ public:
 
 private:
     RobotArmModel robotArmModel;
+
     Mode curMode;
     RobotStepper robotSteppers[3];
 
