@@ -15,6 +15,10 @@
 
 当前是使用的stm32h743进行的开发。
 
+##### 完整的工程链接：
+
+[pa-CommonLib-demos/pa_CommonLib_Demo_stm32H743_IIT6: pa_CommonLib_Demo_stm32H743_IIT6 (github.com)](https://github.com/pa-CommonLib-demos/pa_CommonLib_Demo_stm32H743_IIT6)
+
 ## 语言
 
 c/c++
@@ -24,6 +28,8 @@ c/c++
 查看文件model_describe.md
 
 ## 记录
+
+#### 2020/12/28 已经能够跟上位机通信来更新点序列了！
 
 #### 2020/12/6已经可以顺利的画纵向平面的五角星啦！
 
