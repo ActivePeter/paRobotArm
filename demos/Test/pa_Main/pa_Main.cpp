@@ -39,7 +39,7 @@ namespace TimTasks
             flag_1s = false;
             char buf[30];
             // pa_snprintf(buf, 30, "l f: %d %d %d\r\n", robotArm.getLimitSwitch_LeftArm(), robotArm.getLimitSwitch_RightArm(), CDCRxDataLen);
-            pa_Debug_len((const char *)UserRxBufferFS, CDCRxDataLen);
+            // pa_Debug_len((const char *)UserRxBufferFS, CDCRxDataLen);
             // pa_Debug("1s is ticked\r\n");
         }
     }

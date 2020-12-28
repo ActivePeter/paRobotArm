@@ -29,5 +29,5 @@ void RobotArmPointBuff::reset()
 
 bool RobotArmPointBuff::ifNeedSupply()
 {
-    pointCnt < 3;
+    return pointCnt < 3;
 }

@@ -18,6 +18,7 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
-void RobotArm_Send(uint8_t *Buf, uint16_t Len);
+// void RobotArm_Send(uint8_t *Buf, uint16_t Len);
+void RobotArm_MsgLoop();
 
 #endif // __COMMUNICATION_H__

@@ -21,7 +21,7 @@ void pa_MsgCenterThread(void const *argument)
       RobotArm_HandleReceiveMsg(UserRxBufferFS, pa_MsgCenterBuffHandled_Len);
       pa_MsgCenterBuffHandled_Len = 0;
     }
-
+    RobotArm_MsgLoop();
     osDelay(1);
   }
 }

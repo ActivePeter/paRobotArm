@@ -8,6 +8,8 @@ extern "C"
 }
 #endif
 
+bool RobotArm_Cmd_requesting;
+uint64_t lastRequestMs = 0;
 RobotArm_Cmd RobotArm_judgeCmd(uint8_t data);
 //this func should be called in receive callback;
 void RobotArm_HandleReceiveMsg(uint8_t *data, uint32_t len)
@@ -59,6 +61,25 @@ void RobotArm_Send(uint8_t *Buf, uint16_t Len)
     while (CDC_Transmit_FS(Buf, Len))
         ;
 #endif
+}
+
+void RobotArm_MsgLoop()
+{
+    if (pa_millis() - lastRequestMs > 1000)
+    {
+        RobotArm_Cmd_requesting = false;
+    }
+    if (!RobotArm_Cmd_requesting)
+    {
+        if (RobotArmApp::instance.pointBuff.ifNeedSupply())
+        {
+            RobotArm_Cmd_requesting = true;
+            lastRequestMs = pa_millis();
+            uint8_t buf[1];
+            buf[0] = 0x24;
+            RobotArm_Send(buf, 1);
+        }
+    }
 }
 
 RobotArm_Cmd RobotArm_judgeCmd(uint8_t data)
