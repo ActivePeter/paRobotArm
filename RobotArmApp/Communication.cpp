@@ -1,11 +1,13 @@
 #include "Communication.h"
 #include "RobotArmApp.h"
+#include "pa_CommonLib/src/util/transmitData/transmitData.h"
 #ifdef STM32_H7
 extern "C"
 {
 #include "usbd_cdc_if.h"
 }
 #endif
+
 RobotArm_Cmd RobotArm_judgeCmd(uint8_t data);
 //this func should be called in receive callback;
 void RobotArm_HandleReceiveMsg(uint8_t *data, uint32_t len)
@@ -20,8 +22,32 @@ void RobotArm_HandleReceiveMsg(uint8_t *data, uint32_t len)
         RobotArmApp::instance.userInterface.setMotorEnable_do(0);
         break;
     case RobotArm_Cmd_AddPoints:
-        RobotArmApp::instance
+        // {
+        //        if (len == 61)
+        {
+            RobotArmPoint3D point_p[5];
+            memcpy(point_p, data + 1, sizeof(point_p));
+            // point_p = (RobotArmPoint3D(*)[5])(data + 1);
+            // float a;
+            for (int i = 0; i < 5; i++)
+            {
+                RobotArmApp::instance.pointBuff.addPoint(point_p[i]);
+            }
+            // RobotArmApp::instance.pointBuff.addPoint((*point_p)[1]);
+            // RobotArmApp::instance.pointBuff.addPoint((*point_p)[2]);
+            // RobotArmApp::instance.pointBuff.addPoint((*point_p)[3]);
+            // RobotArmApp::instance.pointBuff.addPoint((*point_p)[4]);
+            // a = (*point_p)[0].x;
+            // a = (*point_p)[1].x;
+            // a = (*point_p)[2].x;
+            // a = (*point_p)[3].x;
+            // a = (*point_p)[4].x;
+            // a = (*point_p)[4].x;
+        }
         break;
+        // }
+        // RobotArmApp::instance
+
     default:
         break;
     }

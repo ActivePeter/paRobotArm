@@ -7,7 +7,7 @@ RobotArm_UserInterface::RobotArm_UserInterface()
 
 void RobotArm_UserInterface::setMotorEnable_do(char enable)
 {
-    // RobotArmApp::instance.setMotorEnable(enable);
+    RobotArmApp::instance.setMotorEnable(enable);
     setMotorEnable_guiCallback(enable);
 }
 

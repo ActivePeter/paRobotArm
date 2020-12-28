@@ -73,6 +73,7 @@ void RobotArmApp::setMotorEnable(char enable)
     if (!enable)
     {
         this->curMode = Mode::mode_backup;
+        pointBuff.reset();
         robotSteppers[0].init(0, RobotArmStepper1_Inverted);
         robotSteppers[1].init(1, RobotArmStepper2_Inverted);
         robotSteppers[2].init(2, RobotArmStepper3_Inverted);
@@ -256,11 +257,4 @@ void RobotArmApp::setStep(RobotStepper &stepper, int m1step, int m2step, int m3s
     step = step - stepper.curStepInGlobal;
     stepper.setDirection((Direction)(step > 0));
     stepper.totalStepInOneMove = step > 0 ? step : -step;
-}
-
-bool RobotArmPointBuff::getNextPoint(RobotArmPoint3D &p)
-{
-    bool res = pointCnt > 0;
-
-    return res;
 }

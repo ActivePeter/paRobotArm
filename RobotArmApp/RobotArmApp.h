@@ -28,16 +28,18 @@
 #define RobotArmPointBuffLen 8
 typedef struct
 {
-    int x;
-    int y;
-    int z;
+    float x;
+    float y;
+    float z;
 } RobotArmPoint3D;
 
 class RobotArmPointBuff
 {
 public:
-    void addPoint(RobotArmPoint3D point);
+    bool addPoint(RobotArmPoint3D point);
     bool getNextPoint(RobotArmPoint3D &p);
+    void reset();
+    bool ifNeedSupply();
 
 private:
     int pointCnt = 0;
@@ -85,6 +87,8 @@ public:
 
     static RobotArmApp instance;
     RobotArm_UserInterface userInterface;
+    RobotArmPointBuff pointBuff;
+
     void onTimerTick();
 
     enum Mode
