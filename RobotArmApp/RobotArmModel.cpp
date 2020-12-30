@@ -5,7 +5,7 @@ RobotArmModel::RobotArmModel()
 }
 
 //detailed model please check model_describe.md
-void RobotArmModel::recalcVeticalPlane(float x, float y, int &m1Step, int &m2Step, int &m3Step)
+void RobotArmModel::recalcVeticalPlane(float x, float y, float z, int &m1Step, int &m2Step, int &m3Step)
 {
     float theata4plus1 = atan2f(y, -x);
     if (theata4plus1 < 0)
@@ -19,6 +19,9 @@ void RobotArmModel::recalcVeticalPlane(float x, float y, int &m1Step, int &m2Ste
     float theata4 = acosf((l1Square + l3Square - l2Square) / (2 * l1 * l3));
     theata2 = theata3plus2 - theata3;
     theata1 = theata4plus1 - theata4;
+
+    float theataXZ = atan2f(z, x + 45);
+    m3Step = theataXZ * RobotArmStepCnt_PI_4_divide8 / PI_4;
 
     m2Step = theata1 * RobotArmStepCnt_PI_4_divide8 / PI_4;
     m2Step = m2Step - 2 * RobotArmStepCnt_PI_4_divide8 + RobotArmStepCnt_RightArmVertical_divide8;

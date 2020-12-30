@@ -52,7 +52,7 @@ class RobotArmModel
 public:
     RobotArmModel();
 
-    void recalcVeticalPlane(float x, float y, int &m1Step, int &m2Step, int &m3Step);
+    void recalcVeticalPlane(float x, float y, float z, int &m1Step, int &m2Step, int &m3Step);
     void initDatas();
 
 private:

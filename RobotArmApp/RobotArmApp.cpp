@@ -32,7 +32,7 @@ void RobotArmApp::onTimerTick()
     case Mode::mode_running:
         if (currentTick < tickCountInOneMove)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 doStepperEvent(robotSteppers[i], false);
             }
@@ -153,7 +153,13 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
             switch (stepper.getDir())
             {
             case direction_decrease:
-                if (stepper.curStepInGlobal > 0)
+                if (stepper.getId() == 2)
+                {
+                    stepper.setStepPin(1);
+                    stepper.curStepInGlobal--;
+                    stepper.curStepInOneMove++;
+                }
+                else if (stepper.curStepInGlobal > 0)
                 {
                     stepper.setStepPin(1);
                     stepper.curStepInGlobal--;
@@ -217,7 +223,12 @@ void RobotArmApp::prepareNextMove(bool firstRun)
         }
         else
         {
-            this->tickCountInOneMove = 50000; // / 5;
+            float dx = targetPoint.x - lastPoint.x;
+            float dy = targetPoint.y - lastPoint.y;
+            float dz = targetPoint.z - lastPoint.z;
+            int distance = sqrtf(dx * dx + dy * dy + dz * dz);
+            this->tickCountInOneMove = (distance + 1) * 300; // / 5;
+            // if(tickCountInOneMove)
         }
 
         int step1, step2, step3;
@@ -232,7 +243,7 @@ void RobotArmApp::prepareNextMove(bool firstRun)
         // float x2 = 200 + r * cosf(angle2);
         // float y2 = 0 + r * sinf(angle2);
 
-        robotArmModel.recalcVeticalPlane(targetPoint.x, targetPoint.y, step1, step2, step3);
+        robotArmModel.recalcVeticalPlane(targetPoint.x, targetPoint.y, targetPoint.z, step1, step2, step3);
 
         for (int i = 0; i < 3; i++)
         {
@@ -248,6 +259,7 @@ void RobotArmApp::prepareNextMove(bool firstRun)
         //     curStarPoint++;
         //     curStarPoint %= 5;
         // }
+        lastPoint = targetPoint;
     }
 
     //设置三个步进的步进方向
@@ -266,6 +278,8 @@ void RobotArmApp::setStep(RobotStepper &stepper, int m1step, int m2step, int m3s
         // step = RobotArmStepCnt_RightArmVertical_divide8 + RobotArmStepCnt_PI_4_divide8;
         step = m2step;
         break;
+    case 2:
+        step = m3step;
     }
 
     step = step - stepper.curStepInGlobal;
