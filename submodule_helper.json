@@ -1,0 +1,28 @@
+{
+    "root_folder": "./",
+    "submodules_structure": {
+        "paLibSubs": [
+            {
+                "used": 1,
+                "git": "https://github.com/paMcuLib/paMcuLib_CoreHeads.git",
+                "rename": "paCore"
+            },
+            {
+                "used": 1,
+                "git": "https://github.com/ActivePeter/paMcuLibCore_Esp32.git",
+                "rename": "paCoreSrcs"
+            },
+            {
+                "used": 1,
+                "git": "https://github.com/ActivePeter/paMcuLib_Base.git"
+            }
+        ],
+        "paLibSubs/paMods/display": [
+            {
+                "used": 1,
+                "rename": "SSD1306",
+                "git": "https://github.com/pa-McuLib-parts/ssd1306_pa_CommonLib.git"
+            }
+        ]
+    }
+}
