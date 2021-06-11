@@ -14,7 +14,8 @@
             },
             {
                 "used": 1,
-                "git": "https://github.com/ActivePeter/paMcuLib_Base.git"
+                "git": "https://github.com/ActivePeter/paMcuLib_Base.git",
+                "rename": "paBase"
             }
         ],
         "paLibSubs/paMods/display": [
