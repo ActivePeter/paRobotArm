@@ -10,3 +10,12 @@
 [submodule "paLibSubs/paBase"]
 	path = paLibSubs/paBase
 	url = https://github.com/ActivePeter/paMcuLib_Base.git
+[submodule "paLibSubs/paCoreSrc"]
+	path = paLibSubs/paCoreSrc
+	url = https://github.com/ActivePeter/paMcuLibCore_Esp32.git
+[submodule "paLibSubs/paCoreSr"]
+	path = paLibSubs/paCoreSr
+	url = https://github.com/ActivePeter/paMcuLibCore_Esp32.git
+[submodule "paLibSubs/paCoreS"]
+	path = paLibSubs/paCoreS
+	url = https://github.com/ActivePeter/paMcuLibCore_Esp32.git

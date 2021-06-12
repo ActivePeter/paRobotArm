@@ -10,7 +10,7 @@
             {
                 "used": 1,
                 "git": "https://github.com/ActivePeter/paMcuLibCore_Esp32.git",
-                "rename": "paCoreSrcs"
+                "rename": "paCoreSrc"
             },
             {
                 "used": 1,
