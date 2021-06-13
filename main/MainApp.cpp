@@ -6,8 +6,11 @@
 #include "paCoreHead/paIIC.h"
 void mainAppEntry()
 {
-    _G_paIIC.init();
+
+    _G_paIIC.init(0);
     OLED_Init(0);
+    // OLED_On();
+    OLED_ShowString(0, 0, "121", 12);
     while (1)
     {
         ESP_LOGI("App", "hello world!");
