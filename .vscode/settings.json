@@ -6,8 +6,7 @@
   "idf.customExtraVars": "{\"OPENOCD_SCRIPTS\":\"C:\\\\Users\\\\sjjmw\\\\.espressif\\\\tools\\\\openocd-esp32\\\\v0.10.0-esp32-20210401/openocd-esp32/share/openocd/scripts\",\"IDF_CCACHE_ENABLE\":\"1\"}",
   "idf.adapterTargetName": "esp32s2",
   "idf.openOcdConfigs": [
-    "interface/ftdi/esp32_devkitj_v1.cfg",
-    "target/esp32s2.cfg"
+    "board/esp32s2-kaluga-1.cfg"
   ],
   "idf.flashType": "UART",
   "idf.portWin": "COM3",

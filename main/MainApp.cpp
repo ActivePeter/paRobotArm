@@ -1,9 +1,11 @@
 #include "MainApp.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_log.h"
+
 #include "paMods/display/SSD1306/pa_oled.h"
 #include "paCoreHead/paIIC.h"
+#include "paCoreHead/paBase.h"
+
 void mainAppEntry()
 {
 
@@ -13,7 +15,8 @@ void mainAppEntry()
     OLED_ShowString(0, 0, "121", 12);
     while (1)
     {
-        ESP_LOGI("App", "hello world!");
+        // ESP_LOGI("App", "hello world!");
+        _G_paBase.output("hello world");
         vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
     }
 }
