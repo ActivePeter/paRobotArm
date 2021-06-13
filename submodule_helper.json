@@ -5,7 +5,7 @@
             {
                 "used": 1,
                 "git": "https://github.com/paMcuLib/paMcuLib_CoreHeads.git",
-                "rename": "paCore"
+                "rename": "paCoreHead"
             },
             {
                 "used": 1,

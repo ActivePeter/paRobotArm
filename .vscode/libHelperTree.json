@@ -1,0 +1,10 @@
+{
+    "paMods": {
+        "display": {
+            "SSD1306": {
+                "header=SSD1306.h": "Only Use For Gen Header,Don't change",
+                "DISPLAY_USE_SSD1306": "0"
+            }
+        }
+    }
+}
