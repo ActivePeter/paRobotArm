@@ -14,6 +14,10 @@
   "files.associations": {
     "gpio.h": "c",
     "led_strip.h": "c",
-    "sdkconfig.h": "c"
+    "sdkconfig.h": "c",
+    "string_view": "cpp",
+    "regex": "cpp",
+    "*.tcc": "cpp",
+    "*.ipp": "cpp"
   }
 }

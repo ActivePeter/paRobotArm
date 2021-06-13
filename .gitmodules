@@ -1,8 +1,6 @@
 
 
-[submodule "paLibSubs/paMods/display/SSD1306"]
-	path = paLibSubs/paMods/display/SSD1306
-	url = https://github.com/pa-McuLib-parts/ssd1306_pa_CommonLib.git
+
 [submodule "paLibSubs/paBase"]
 	path = paLibSubs/paBase
 	url = https://github.com/ActivePeter/paMcuLib_Base.git
@@ -18,3 +16,6 @@
 [submodule "paLibSubs/paCoreSrc"]
 	path = paLibSubs/paCoreSrc
 	url = https://github.com/ActivePeter/paMcuLibCore_Esp32.git
+[submodule "paLibSubs/paMods/display/SSD1306"]
+	path = paLibSubs/paMods/display/SSD1306
+	url = https://github.com/pa-McuLib-parts/ssd1306_pa_CommonLib.git
