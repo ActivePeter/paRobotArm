@@ -11,6 +11,7 @@
                 "${config:idf.espAdfPath}/components/**",
                 "${config:idf.espAdfPathWin}/components/**",
                 "${workspaceFolder}/paLibSubs",
+                "${workspaceFolder}/AutoGenHeader",
             ],
             "browse": {
                 "path": [

@@ -10,5 +10,10 @@
     "target/esp32s2.cfg"
   ],
   "idf.flashType": "UART",
-  "idf.portWin": "COM3"
+  "idf.portWin": "COM3",
+  "files.associations": {
+    "gpio.h": "c",
+    "led_strip.h": "c",
+    "sdkconfig.h": "c"
+  }
 }
