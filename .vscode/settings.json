@@ -18,6 +18,14 @@
     "regex": "cpp",
     "*.tcc": "cpp",
     "*.ipp": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "paerr": "cpp",
+    "bytearr": "cpp",
+    "charconv": "cpp",
+    "ios": "cpp",
+    "istream": "cpp",
+    "ostream": "cpp",
+    "xstring": "cpp",
+    "xutility": "cpp"
   }
 }

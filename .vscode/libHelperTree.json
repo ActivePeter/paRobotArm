@@ -1,16 +1,10 @@
 {
     "paLibSubs": {
-        "paMods": {
-            "input": {
-                "xpt2046": {
-                    "header=Conf_Xpt2046.h": "Only Use For Gen Header,Don't change",
-                    "Xpt2046_IRQ": "",
-                    "Xpt2046_MISO": "",
-                    "Xpt2046_MOSI": "",
-                    "Xpt2046_CLK": "",
-                    "Xpt2046_CS": ""
-                }
-            }
+        "paCoreSrc": {
+            "header=Conf_platform.h": "Only Use For Gen Header,Don't change",
+            "PLATFORM_ESP32": "0",
+            "PLATFORM_ESP32_S2": "1",
+            "PLATFORM_ESP32_C3": "0"
         }
     }
 }
