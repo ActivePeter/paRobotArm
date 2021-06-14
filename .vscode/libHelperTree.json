@@ -1,9 +1,15 @@
 {
-    "paMods": {
-        "display": {
-            "SSD1306": {
-                "header=SSD1306.h": "Only Use For Gen Header,Don't change",
-                "DISPLAY_USE_SSD1306": "0"
+    "paLibSubs": {
+        "paMods": {
+            "input": {
+                "xpt2046": {
+                    "header=Conf_Xpt2046.h": "Only Use For Gen Header,Don't change",
+                    "Xpt2046_IRQ": "",
+                    "Xpt2046_MISO": "",
+                    "Xpt2046_MOSI": "",
+                    "Xpt2046_CLK": "",
+                    "Xpt2046_CS": ""
+                }
             }
         }
     }

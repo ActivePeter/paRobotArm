@@ -4,25 +4,37 @@
         "paLibSubs": [
             {
                 "used": 1,
-                "git": "https://github.com/paMcuLib/paMcuLib_CoreHeads.git",
+                "git": "https://hub.fastgit.org/paMcuLib/paMcuLibCoreHead.git",
                 "rename": "paCoreHead"
             },
             {
                 "used": 1,
-                "git": "https://github.com/ActivePeter/paMcuLibCore_Esp32.git",
+                "git": "https://hub.fastgit.org/paMcuLib/paMcuLibCore_Esp32.git",
                 "rename": "paCoreSrc"
             },
             {
                 "used": 1,
-                "git": "https://github.com/ActivePeter/paMcuLib_Base.git",
+                "git": "https://hub.fastgit.org/ActivePeter/paMcuLib_Base.git",
                 "rename": "paBase"
             }
         ],
         "paLibSubs/paMods/display": [
             {
-                "used": 1,
+                "used": 0,
                 "rename": "SSD1306",
-                "git": "https://github.com/pa-McuLib-parts/ssd1306_pa_CommonLib.git"
+                "git": "https://hub.fastgit.org/paMcuLib/ssd1306_paMcuLib.git"
+            },
+            {
+                "used": 1,
+                "rename": "ILI9341",
+                "git": "https://hub.fastgit.org/paMcuLib/ili9341_paMcuLib.git"
+            }
+        ],
+        "paLibSubs/paMods/input": [
+            {
+                "used": 1,
+                "rename": "xpt2046",
+                "git": "https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git"
             }
         ]
     }

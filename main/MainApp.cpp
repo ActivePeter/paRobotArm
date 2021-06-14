@@ -2,13 +2,12 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-#include "paMods/display/SSD1306/pa_oled.h"
+// #include "paMods/display/SSD1306/pa_oled.h"
 #include "paCoreHead/paIIC.h"
 #include "paCoreHead/paBase.h"
 
 void mainAppEntry()
 {
-
     _G_paIIC.init(0);
     OLED_Init(0);
     // OLED_On();
