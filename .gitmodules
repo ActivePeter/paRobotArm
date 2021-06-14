@@ -11,7 +11,7 @@
 
 [submodule "components/paLibSubs/paMods/display/ILI9341"]
 	path = components/paLibSubs/paMods/display/ILI9341
-	url = https://github.com/paMcuLib/ili9341_paMcuLib.git
+	url = https://hub.fastgit.org/paMcuLib/ili9341_paMcuLib.git
 [submodule "components/paLibSubs/paMods/input/xpt2046"]
 	path = components/paLibSubs/paMods/input/xpt2046
 	url = https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git
