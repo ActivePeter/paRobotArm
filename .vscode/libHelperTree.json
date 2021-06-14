@@ -1,5 +1,15 @@
 {
     "paLibSubs": {
+        "paMods": {
+            "display": {
+                "ILI9341": {
+                    "header=Conf_ILI9341.h": "Only Use For Gen Header,Don't change",
+                    "Conf_ILI9341_CS": "",
+                    "Conf_ILI9341_DC": "",
+                    "Conf_ILI9341_RST": ""
+                }
+            }
+        },
         "paCoreSrc": {
             "header=Conf_platform.h": "Only Use For Gen Header,Don't change",
             "PLATFORM_ESP32": "0",

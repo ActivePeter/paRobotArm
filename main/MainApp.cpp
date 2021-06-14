@@ -1,6 +1,6 @@
 #include "MainApp.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+// #include "freertos/FreeRTOS.h"
+// #include "freertos/task.h"
 
 // #include "paMods/display/SSD1306/pa_oled.h"
 #include "paCoreHead/paIIC.h"
