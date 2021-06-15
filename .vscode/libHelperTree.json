@@ -1,20 +1,20 @@
 {
     "paLibSubs": {
-        "paMods": {
-            "display": {
-                "ILI9341": {
-                    "header=Conf_ILI9341.h": "Only Use For Gen Header,Don't change",
-                    "Conf_ILI9341_CS": "",
-                    "Conf_ILI9341_DC": "",
-                    "Conf_ILI9341_RST": ""
-                }
-            }
-        },
         "paCoreSrc": {
             "header=Conf_platform.h": "Only Use For Gen Header,Don't change",
             "PLATFORM_ESP32": "0",
             "PLATFORM_ESP32_S2": "1",
             "PLATFORM_ESP32_C3": "0"
+        },
+        "paMods": {
+            "display": {
+                "ILI9341": {
+                    "header=Conf_ILI9341.h": "Only Use For Gen Header,Don't change",
+                    "Conf_ILI9341_CS": "GPIO_NUM_0",
+                    "Conf_ILI9341_DC": "GPIO_NUM_0",
+                    "Conf_ILI9341_RST": "GPIO_NUM_0"
+                }
+            }
         }
     }
 }
