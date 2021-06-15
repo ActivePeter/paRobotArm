@@ -25,6 +25,9 @@ void mainAppEntry()
     // OLED_ShowString(0, 0, "hello world", 12);
     while (1)
     {
+        // _G_paGPIO.write(Conf_ILI9341_CS, 1);
+        // _G_paGPIO.write(Conf_ILI9341_RST, 1);
+        // _G_paGPIO.write(Conf_ILI9341_DC, 1);
         // ESP_LOGI("App", "hello world!");
         _G_paBase.output("hello world");
         _G_paBase.delayMs(1000);

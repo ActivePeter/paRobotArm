@@ -10,9 +10,9 @@
             "display": {
                 "ILI9341": {
                     "header=Conf_ILI9341.h": "Only Use For Gen Header,Don't change",
-                    "Conf_ILI9341_CS": "GPIO_NUM_0",
-                    "Conf_ILI9341_DC": "GPIO_NUM_0",
-                    "Conf_ILI9341_RST": "GPIO_NUM_0"
+                    "Conf_ILI9341_CS": "GPIO_NUM_6",
+                    "Conf_ILI9341_DC": "GPIO_NUM_7",
+                    "Conf_ILI9341_RST": "GPIO_NUM_8"
                 }
             }
         }
