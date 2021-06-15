@@ -15,3 +15,6 @@
 [submodule "components/paLibSubs/paMods/input/xpt2046"]
 	path = components/paLibSubs/paMods/input/xpt2046
 	url = https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git
+[submodule "components/paLibSubs/paMods/display/SSD1306"]
+	path = components/paLibSubs/paMods/display/SSD1306
+	url = https://hub.fastgit.org/paMcuLib/ssd1306_paMcuLib.git

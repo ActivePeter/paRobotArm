@@ -20,7 +20,7 @@
         ],
         "paLibSubs/paMods/display": [
             {
-                "used": 0,
+                "used": 1,
                 "rename": "SSD1306",
                 "git": "https://hub.fastgit.org/paMcuLib/ssd1306_paMcuLib.git"
             },

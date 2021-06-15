@@ -3,4 +3,4 @@ file(GLOB_RECURSE SRC_FILES_MAIN *.cpp)
 idf_component_register(SRCS "blink.c"
  ${SRC_FILES_MAIN}
 # "*.cpp"
-                    INCLUDE_DIRS "." "./AutoGenHeader")
+                    INCLUDE_DIRS "." )
