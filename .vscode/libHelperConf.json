@@ -1,7 +1,7 @@
 {
-    "libConfFilePath": "./components/paLibSubs",
+    "libConfFilePath": "./main/AutoGenHeaders",
     "defaultConfFileName": "AllConfig.h",
-    "libSrcPath": "./components",
+    "libSrcPath": "./",
     "describeFileFolderName": "",
     "describeFileName": "describe.txt"
 }

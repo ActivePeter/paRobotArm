@@ -1,5 +1,5 @@
 {
-    "root_folder": "./components/",
+    "root_folder": "./main/",
     "submodules_structure": {
         "paLibSubs": [
             {

@@ -15,6 +15,22 @@
 [submodule "components/paLibSubs/paMods/input/xpt2046"]
 	path = components/paLibSubs/paMods/input/xpt2046
 	url = https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git
-[submodule "components/paLibSubs/paMods/display/SSD1306"]
-	path = components/paLibSubs/paMods/display/SSD1306
+
+[submodule "main/paLibSubs/paCoreHead"]
+	path = main/paLibSubs/paCoreHead
+	url = https://hub.fastgit.org/paMcuLib/paMcuLibCoreHead.git
+[submodule "main/paLibSubs/paCoreSrc"]
+	path = main/paLibSubs/paCoreSrc
+	url = https://hub.fastgit.org/paMcuLib/paMcuLibCore_Esp32.git
+[submodule "main/paLibSubs/paBase"]
+	path = main/paLibSubs/paBase
+	url = https://hub.fastgit.org/ActivePeter/paMcuLib_Base.git
+[submodule "main/paLibSubs/paMods/display/SSD1306"]
+	path = main/paLibSubs/paMods/display/SSD1306
 	url = https://hub.fastgit.org/paMcuLib/ssd1306_paMcuLib.git
+[submodule "main/paLibSubs/paMods/display/ILI9341"]
+	path = main/paLibSubs/paMods/display/ILI9341
+	url = https://hub.fastgit.org/paMcuLib/ili9341_paMcuLib.git
+[submodule "main/paLibSubs/paMods/input/xpt2046"]
+	path = main/paLibSubs/paMods/input/xpt2046
+	url = https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git
