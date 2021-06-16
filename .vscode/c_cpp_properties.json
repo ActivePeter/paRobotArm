@@ -11,9 +11,9 @@
                 "${config:idf.espIdfPathWin}/components/**",
                 "${config:idf.espAdfPath}/components/**",
                 "${config:idf.espAdfPathWin}/components/**",
-                "${workspaceFolder}/components/paLibSubs",
                 "${workspaceFolder}/main",
-                "${workspaceFolder}/main/AutoGenHeader",
+                "${workspaceFolder}/main/paLibSubs",
+                "${workspaceFolder}/main/AutoGenHeaders",
             ],
             // "intelliSenseMode": "msvc-x64",
             // "browse": {

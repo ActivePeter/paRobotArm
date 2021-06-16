@@ -26,6 +26,7 @@
     "istream": "cpp",
     "ostream": "cpp",
     "xstring": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "all": "cpp"
   }
 }

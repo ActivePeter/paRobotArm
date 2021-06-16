@@ -1,12 +1,12 @@
 #include "MainApp.h"
 // #include "freertos/FreeRTOS.h"
 // #include "freertos/task.h"
-
+#include "paCoreInc/all"
 #include "paMods/display/SSD1306/pa_oled.h"
 // #include "paCoreHead/paIIC.h"
 // #include "paCoreHead/paBase.h"
-#include "paCoreHead/paSPI.h"
-#include "paCoreHead/paBase.h"
+// #include "paCoreHead/paSPI.h"
+// #include "paCoreHead/paBase.h"
 #include "paMods/display/ILI9341/pa_ILI9341.h"
 struct App
 {

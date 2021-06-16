@@ -11,11 +11,6 @@
                 "used": 1,
                 "git": "https://hub.fastgit.org/paMcuLib/paMcuLibCore_Esp32.git",
                 "rename": "paCoreSrc"
-            },
-            {
-                "used": 1,
-                "git": "https://hub.fastgit.org/ActivePeter/paMcuLib_Base.git",
-                "rename": "paBase"
             }
         ],
         "paLibSubs/paMods/display": [
