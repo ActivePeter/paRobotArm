@@ -16,9 +16,7 @@
 	path = components/paLibSubs/paMods/input/xpt2046
 	url = https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git
 
-[submodule "main/paLibSubs/paCoreHead"]
-	path = main/paLibSubs/paCoreHead
-	url = https://hub.fastgit.org/paMcuLib/paMcuLibCoreHead.git
+
 [submodule "main/paLibSubs/paCoreSrc"]
 	path = main/paLibSubs/paCoreSrc
 	url = https://hub.fastgit.org/paMcuLib/paMcuLibCore_Esp32.git
@@ -34,3 +32,6 @@
 [submodule "main/paLibSubs/paMods/input/xpt2046"]
 	path = main/paLibSubs/paMods/input/xpt2046
 	url = https://hub.fastgit.org/paMcuLib/xpt2046_paMcuLib.git
+[submodule "main/paLibSubs/paCoreInc"]
+	path = main/paLibSubs/paCoreInc
+	url = https://hub.fastgit.org/paMcuLib/paMcuLibCoreHead.git
