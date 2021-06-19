@@ -1,6 +1,29 @@
 {
     "main": {
+        "RobotArm": {
+            "header=Conf_RobotArm.h": "Only Use For Gen Header,Don't change",
+            "RobotArm_GPIO_LeftArmLimit": "GPIO_NUM_19",
+            "RobotArm_GPIO_RightArmLimit": "GPIO_NUM_20",
+            "RobotArm_GPIO_En0": "GPIO_NUM_0",
+            "RobotArm_GPIO_En1": "GPIO_NUM_1",
+            "RobotArm_GPIO_En2": "GPIO_NUM_2",
+            "RobotArm_GPIO_Step0": "GPIO_NUM_3",
+            "RobotArm_GPIO_Step1": "GPIO_NUM_4",
+            "RobotArm_GPIO_Step2": "GPIO_NUM_5",
+            "RobotArm_GPIO_Dir0": "GPIO_NUM_9",
+            "RobotArm_GPIO_Dir1": "GPIO_NUM_10",
+            "RobotArm_GPIO_Dir2": "GPIO_NUM_11",
+            "RobotArm_GPIO_MS1": "GPIO_NUM_12",
+            "RobotArm_GPIO_MS2": "GPIO_NUM_13",
+            "RobotArm_GPIO_MS3": "GPIO_NUM_14"
+        },
         "paLibSubs": {
+            "paCoreSrc": {
+                "header=Conf_platform.h": "Only Use For Gen Header,Don't change",
+                "PLATFORM_ESP32": "0",
+                "PLATFORM_ESP32_S2": "1",
+                "PLATFORM_ESP32_C3": "0"
+            },
             "paMods": {
                 "display": {
                     "ILI9341": {
@@ -10,12 +33,6 @@
                         "Conf_ILI9341_RST": "GPIO_NUM_8"
                     }
                 }
-            },
-            "paCoreSrc": {
-                "header=Conf_platform.h": "Only Use For Gen Header,Don't change",
-                "PLATFORM_ESP32": "0",
-                "PLATFORM_ESP32_S2": "1",
-                "PLATFORM_ESP32_C3": "0"
             }
         }
     }

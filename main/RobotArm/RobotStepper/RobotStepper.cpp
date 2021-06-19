@@ -6,8 +6,8 @@ void RobotStepper::init(char id1, bool dirInverted1)
 {
     id = id1;
     dirInverted = dirInverted1;
-    setEnPin(0);
-    setDirection(direction_decrease);
+    setEnPin(1);
+    setDirection(Dir_Back);
     setStepPin(0);
     curStepInGlobal = 0;
     curStepInOneMove = 0;
@@ -24,7 +24,7 @@ char RobotStepper::getId()
     return id;
 }
 
-Direction RobotStepper::getDir()
+RobotStepper::Direction RobotStepper::getDir()
 {
     return direction;
 }

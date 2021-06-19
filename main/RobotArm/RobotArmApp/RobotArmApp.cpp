@@ -1,10 +1,11 @@
+#include "../RobotStepper/RobotStepper.h"
 #include "RobotArmApp.h"
-#include "RobotArm_UserInterface.h"
-#include "pa_CommonLib/src/drv/pa_PWM/pa_PWM.h"
-#include "pa_CommonLib/src/util/pa_Math/pa_Math.h"
+// #include "RobotArm_UserInterface.h"
+// #include "pa_CommonLib/src/drv/pa_PWM/pa_PWM.h"
+// #include "pa_CommonLib/src/util/pa_Math/pa_Math.h"
 
-RobotArmApp RobotArmApp::instance = RobotArmApp();
-RobotArmApp::RobotArmApp() {}
+// RobotArmApp RobotArmApp::instance = RobotArmApp();
+// RobotArmApp::RobotArmApp() {}
 
 void RobotArmApp::onTimerTick()
 {
@@ -59,6 +60,8 @@ void RobotArmApp::setMode(Mode mode)
 
 void RobotArmApp::init()
 {
+    initHardware();
+    RobotStepper::initHardware();
     robotSteppers[0].init(0, RobotArmStepper1_Inverted);
     robotSteppers[1].init(1, RobotArmStepper2_Inverted);
     robotSteppers[2].init(2, RobotArmStepper3_Inverted);
@@ -80,6 +83,7 @@ void RobotArmApp::setMotorEnable(char enable)
     }
     for (int i = 0; i < 3; i++)
     {
+        //when enable a4988, pin should be 0
         robotSteppers[i].setEnPin(!enable);
     }
 }
@@ -152,7 +156,7 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
         {
             switch (stepper.getDir())
             {
-            case direction_decrease:
+            case RobotStepper::Dir_Back:
                 if (stepper.getId() == 2)
                 {
                     stepper.setStepPin(1);
@@ -167,7 +171,7 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
                 }
                 break;
 
-            case direction_increase:
+            case RobotStepper::Dir_Forward:
                 stepper.setStepPin(1);
                 stepper.curStepInGlobal++;
                 stepper.curStepInOneMove++;
@@ -267,7 +271,7 @@ void RobotArmApp::prepareNextMove(bool firstRun)
 
 void RobotArmApp::setStep(RobotStepper &stepper, int m1step, int m2step, int m3step)
 {
-    int step;
+    int step = 0;
     switch (stepper.getId())
     {
     case 0:
@@ -283,6 +287,26 @@ void RobotArmApp::setStep(RobotStepper &stepper, int m1step, int m2step, int m3s
     }
 
     step = step - stepper.curStepInGlobal;
-    stepper.setDirection((Direction)(step > 0));
+    stepper.setDirection((RobotStepper::Direction)(step > 0));
     stepper.totalStepInOneMove = step > 0 ? step : -step;
+}
+
+void RobotArmApp::parseMsg(uint8_t *data, int len)
+{
+    //若消息为归位
+    if (len >= 2)
+    {
+        //启动和关闭
+        if (data[0] == 0x02)
+        {
+            if (data[1] == 0x02)
+            {
+                this->setMotorEnable(1);
+            }
+            else if (data[1] == 0x03)
+            {
+                this->setMotorEnable(0);
+            }
+        }
+    }
 }

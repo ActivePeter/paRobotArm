@@ -1,5 +1,7 @@
 #include "RobotArmApp.h"
-#include "pa_CommonLib/src/util/pa_Math/pa_Math.h"
+#include "robot_math.h"
+
+// #include "pa_CommonLib/src/util/pa_Math/pa_Math.h"
 RobotArmModel::RobotArmModel()
 {
 }

@@ -1,9 +1,11 @@
-#include "pa_Defines.h"
+// #include "pa_Defines.h"
 
 #ifndef __ROBOTARMAPP_H__
 #define __ROBOTARMAPP_H__
+#include "../_drv_inc.h"
 #include "../RobotStepper/RobotStepper.h"
-#include "RobotArm_UserInterface.h"
+#include "robot_math.h"
+// #include "RobotArm_UserInterface.h"
 /***********************************************************
  * 
  * direction invert
@@ -82,11 +84,29 @@ private:
 // };
 class RobotArmApp
 {
-public:
-    RobotArmApp();
+private:
+    /**************************************
+     * 
+     *      硬件层
+     * 
+     **************************************/
 
-    static RobotArmApp instance;
-    RobotArm_UserInterface userInterface;
+    // char getLimitSwitch_LeftArm();
+    // char getLimitSwitch_RightArm();
+
+#include "_drv_inline.h"
+    /**************************************
+     * 
+     *      逻辑层
+     * 
+     **************************************/
+public:
+    const uint16_t limitSwitchActivatedCnt_MAX = 100; //用于消抖的限位开关计数值
+    void setMotorEnable(char enable);
+    // RobotArmApp();
+
+    // static RobotArmApp instance;
+    // RobotArm_UserInterface userInterface;
     RobotArmPointBuff pointBuff;
 
     void onTimerTick();
@@ -98,16 +118,7 @@ public:
     };
     void setMode(Mode mode);
     void init();
-
-    /**************************************
-     * 
-     *      硬件层
-     * 
-     **************************************/
-    const uint16_t limitSwitchActivatedCnt_MAX = 100; //用于消抖的限位开关计数值
-    char getLimitSwitch_LeftArm();
-    char getLimitSwitch_RightArm();
-    void setMotorEnable(char enable);
+    void parseMsg(uint8_t *data, int len);
 
 private:
     RobotArmModel robotArmModel;

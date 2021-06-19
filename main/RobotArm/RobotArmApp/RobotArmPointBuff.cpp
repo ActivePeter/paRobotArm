@@ -6,7 +6,9 @@ bool RobotArmPointBuff::addPoint(RobotArmPoint3D point)
     {
         buff[(headIndex + pointCnt) % RobotArmPointBuffLen] = point;
         pointCnt++;
+        return true;
     }
+    return false;
     // pointCnt %= RobotArmPointBuffLen;
 }
 bool RobotArmPointBuff::getNextPoint(RobotArmPoint3D &p)

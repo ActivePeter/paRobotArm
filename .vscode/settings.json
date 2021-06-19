@@ -9,7 +9,7 @@
     "board/esp32s2-kaluga-1.cfg"
   ],
   "idf.flashType": "UART",
-  "idf.portWin": "COM4",
+  "idf.portWin": "COM5",
   "files.associations": {
     "gpio.h": "c",
     "led_strip.h": "c",
