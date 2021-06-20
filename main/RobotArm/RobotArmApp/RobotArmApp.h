@@ -27,7 +27,7 @@
 #define RobotArmStepCnt_LeftArmVertical_divide8 2150
 //右侧控制臂垂直时，8细分下的步进值（坐标基准）
 #define RobotArmStepCnt_RightArmVertical_divide8 1544
-#define RobotArmPointBuffLen 8
+#define RobotArmPointBuffLen 30
 
 struct RobotArmPoint3D
 {
@@ -47,6 +47,7 @@ public:
     bool ifNeedSupply();
 
 private:
+    bool needSupplyFlag = true;
     int pointCnt = 0;
     int headIndex = 0;
     RobotArmPoint3D buff[RobotArmPointBuffLen];

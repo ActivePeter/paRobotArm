@@ -20,6 +20,10 @@ bool RobotArmPointBuff::getNextPoint(RobotArmPoint3D &p)
         headIndex++;
         headIndex %= RobotArmPointBuffLen;
         pointCnt--;
+        // if (pointCnt == 15)
+        // {
+        //     needSupplyFlag = true;
+        // }
     }
 
     return res;
@@ -32,5 +36,11 @@ void RobotArmPointBuff::reset()
 
 bool RobotArmPointBuff::ifNeedSupply()
 {
-    return pointCnt < 3;
+    return pointCnt < 16;
+    //     // if (needSupplyFlag)
+    //     // {
+    //         needSupplyFlag = false;
+    //         return true;
+    //     }
+    //     return false;
 }
