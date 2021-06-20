@@ -9,6 +9,7 @@ namespace Talk
     // public:
     paErr init();
     void msgHandle(uint8_t *data, int len);
+    void msgSend(uint8_t *data, int len);
 };
 
 #endif // __TALK_H__

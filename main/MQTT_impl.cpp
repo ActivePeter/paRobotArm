@@ -37,7 +37,7 @@
 namespace N_Mqtt
 {
     static const char *TAG = "MQTT";
-
+    esp_mqtt_client_handle_t client;
     static void log_error_if_nonzero(const char *message, int error_code)
     {
         if (error_code != 0)
@@ -60,7 +60,7 @@ namespace N_Mqtt
     {
         ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%d", base, event_id);
         esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t)event_data;
-        esp_mqtt_client_handle_t client = event->client;
+        client = event->client;
         int msg_id;
         switch ((esp_mqtt_event_id_t)event_id)
         {
@@ -198,5 +198,11 @@ namespace N_Mqtt
      */
         wifi_init_sta();
         mqtt_app_start();
+    }
+
+    void sendToHost(unsigned char *data, int len)
+    {
+        // msg_id =
+        esp_mqtt_client_publish(client, "/topic/slave", (const char *)data, len, 0, 0);
     }
 }

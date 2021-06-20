@@ -1,5 +1,7 @@
 #include "../RobotStepper/RobotStepper.h"
 #include "RobotArmApp.h"
+#include "string.h"
+#include "paCoreInc/all"
 // #include "RobotArm_UserInterface.h"
 // #include "pa_CommonLib/src/drv/pa_PWM/pa_PWM.h"
 // #include "pa_CommonLib/src/util/pa_Math/pa_Math.h"
@@ -77,6 +79,7 @@ void RobotArmApp::setMotorEnable(char enable)
     {
         this->curMode = Mode::mode_backup;
         pointBuff.reset();
+        lastPoint = RobotArmPoint3D(0, 0, 0);
         robotSteppers[0].init(0, RobotArmStepper1_Inverted);
         robotSteppers[1].init(1, RobotArmStepper2_Inverted);
         robotSteppers[2].init(2, RobotArmStepper3_Inverted);
@@ -86,6 +89,8 @@ void RobotArmApp::setMotorEnable(char enable)
         //when enable a4988, pin should be 0
         robotSteppers[i].setEnPin(!enable);
     }
+
+    // this->pointBuff.addPoint(RobotArmPoint3D(200, 100, 100));
 }
 
 /***************************
@@ -213,7 +218,7 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
  * **********************************/
 void RobotArmApp::prepareNextMove(bool firstRun)
 {
-    static RobotArmPoint3D lastPoint;
+    // static
     RobotArmPoint3D targetPoint;
     bool hasPoint = pointBuff.getNextPoint(targetPoint);
     if (hasPoint)
@@ -306,6 +311,23 @@ void RobotArmApp::parseMsg(uint8_t *data, int len)
             else if (data[1] == 0x03)
             {
                 this->setMotorEnable(0);
+            }
+            else if (data[1] == 0x04)
+            {
+                int pcnt = data[2];
+                if (len == 3 + pcnt * 12)
+                {
+                    RobotArmPoint3D p[5];
+                    memcpy(p, data + 3, len - 3);
+                    char buf[30];
+
+                    for (int i = 0; i < pcnt; i++)
+                    {
+                        sprintf(buf, "%f %f %f\r\n", p[i].x, p[i].y, p[i].z);
+                        _G_paBase.output(buf);
+                        this->pointBuff.addPoint(p[i]);
+                    }
+                }
             }
         }
     }

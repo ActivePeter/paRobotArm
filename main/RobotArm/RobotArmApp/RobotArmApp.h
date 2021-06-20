@@ -28,12 +28,15 @@
 //右侧控制臂垂直时，8细分下的步进值（坐标基准）
 #define RobotArmStepCnt_RightArmVertical_divide8 1544
 #define RobotArmPointBuffLen 8
-typedef struct
+
+struct RobotArmPoint3D
 {
     float x;
     float y;
     float z;
-} RobotArmPoint3D;
+    RobotArmPoint3D() {}
+    RobotArmPoint3D(float x1, float y1, float z1) : x(x1), y(y1), z(z1) {}
+};
 
 class RobotArmPointBuff
 {
@@ -108,6 +111,7 @@ public:
     // static RobotArmApp instance;
     // RobotArm_UserInterface userInterface;
     RobotArmPointBuff pointBuff;
+    RobotArmPoint3D lastPoint;
 
     void onTimerTick();
 

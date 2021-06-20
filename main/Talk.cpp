@@ -14,4 +14,9 @@ namespace Talk
     {
         app.robotArm.parseMsg(data, len);
     }
+
+    void msgSend(uint8_t *data, int len)
+    {
+        N_Mqtt::sendToHost(data, len);
+    }
 }

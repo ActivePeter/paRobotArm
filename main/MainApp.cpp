@@ -18,6 +18,7 @@ void timerCall_100us()
 void mainAppEntry()
 {
 
+    app.robotArm.init();
     // app.talk.init();
     Talk::init();
     // _G_paIIC.init(0);
@@ -26,7 +27,6 @@ void mainAppEntry()
 
     // _G_paGPIO.init(N_paGPIO::Mode_Output, RobotArm_GPIO_En0);
     // _G_paGPIO.write(RobotArm_GPIO_En0, 0);
-    app.robotArm.init();
     _G_paTimer.initWithCallBack(100, timerCall_100us);
 
     int helloCnt = 0;
@@ -44,7 +44,14 @@ void mainAppEntry()
             helloCnt = 0;
             _G_paBase.output("hello world");
         }
-
+        if (helloCnt % 100 == 0)
+        {
+            if (app.robotArm.pointBuff.ifNeedSupply())
+            {
+                uint8_t *data = (uint8_t *)"sos";
+                Talk::msgSend(data, 3);
+            }
+        }
         _G_paBase.delayMs(2);
         // vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
     }
