@@ -36,7 +36,7 @@ void RobotArmPointBuff::reset()
 
 bool RobotArmPointBuff::ifNeedSupply()
 {
-    return pointCnt < 16;
+    return pointCnt < 40;
     //     // if (needSupplyFlag)
     //     // {
     //         needSupplyFlag = false;

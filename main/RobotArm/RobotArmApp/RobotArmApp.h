@@ -27,7 +27,7 @@
 #define RobotArmStepCnt_LeftArmVertical_divide8 2150
 //右侧控制臂垂直时，8细分下的步进值（坐标基准）
 #define RobotArmStepCnt_RightArmVertical_divide8 1544
-#define RobotArmPointBuffLen 30
+#define RobotArmPointBuffLen 200
 
 struct RobotArmPoint3D
 {
