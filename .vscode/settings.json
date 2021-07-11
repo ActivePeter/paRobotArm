@@ -1,4 +1,8 @@
 {
+  // "cmake.configureSettings": {
+  //   "CMAKE_MAKE_PROGRAM": "C:/Program Files/ninja-win/ninja"
+  // },
+  "cmake.generator": "Ninja",
   // "C_Cpp.intelliSenseEngine": "Tag Parser",
   "idf.espIdfPathWin": "e:\\pa_files\\thd_libs\\esp-idf",
   "idf.pythonBinPathWin": "C:\\Users\\sjjmw\\.espressif\\python_env\\idf4.4_py3.8_env\\Scripts\\python.exe",
@@ -28,5 +32,7 @@
     "xstring": "cpp",
     "xutility": "cpp",
     "all": "cpp"
-  }
+  },
+  "idf.toolsPathWin": "C:\\Users\\sjjmw\\.espressif",
+  "idf.gitPath": "C:\\Users\\sjjmw\\.espressif\\tools\\idf-git\\cmd\\git.exe"
 }

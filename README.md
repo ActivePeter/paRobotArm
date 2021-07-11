@@ -14,7 +14,7 @@ Run host on ipad, and draw on itself
 
 在ipad上运行上位机并且在它上面画画
 
-![run host on ipad, and draw on itself](https://hanbaoaaa.xyz/tuchuang/images/2021/06/21/1624288368467.gif)
+![run host on ipad, and draw on itself](./robotArm1.gif)
 
 Draw a cat
 

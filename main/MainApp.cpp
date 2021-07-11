@@ -19,6 +19,7 @@ void mainAppEntry()
 {
 
     app.robotArm.init();
+
     // app.talk.init();
     Talk::init();
     // _G_paIIC.init(0);
