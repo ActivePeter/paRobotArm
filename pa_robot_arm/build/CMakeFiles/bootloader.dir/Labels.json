@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}
