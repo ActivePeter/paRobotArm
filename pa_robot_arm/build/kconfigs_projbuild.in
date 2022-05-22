@@ -1,6 +1,0 @@
-source "F:/thirdLib/esp-idf-v4.2.3/components/app_update/Kconfig.projbuild"
-source "F:/thirdLib/esp-idf-v4.2.3/components/bootloader/Kconfig.projbuild"
-source "F:/thirdLib/esp-idf-v4.2.3/components/esptool_py/Kconfig.projbuild"
-source "F:/thirdLib/esp-idf-v4.2.3/components/partition_table/Kconfig.projbuild"
-source "F:/prj/robot_arm/pa_robot_arm_new/paRobotArm/pa_robot_arm/main/Kconfig.projbuild"
-source "F:/thirdLib/esp-idf-v4.2.3/examples/common_components/protocol_examples_common/Kconfig.projbuild"

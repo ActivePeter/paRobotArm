@@ -1,3 +1,0 @@
-source "F:/thirdLib/esp-idf-v4.2.3/components/bootloader/Kconfig.projbuild"
-source "F:/thirdLib/esp-idf-v4.2.3/components/esptool_py/Kconfig.projbuild"
-source "F:/thirdLib/esp-idf-v4.2.3/components/partition_table/Kconfig.projbuild"

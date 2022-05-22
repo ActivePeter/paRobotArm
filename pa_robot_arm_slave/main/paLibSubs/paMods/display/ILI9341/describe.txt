@@ -1,0 +1,4 @@
+header=Conf_ILI9341.h
+Conf_ILI9341_CS|
+Conf_ILI9341_DC|
+Conf_ILI9341_RST|
