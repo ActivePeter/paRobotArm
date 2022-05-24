@@ -86,6 +86,7 @@ private:
 //     RobotArmApp &robotArm = RobotArmApp::instance;
 //     void (*setMotorEnable_guiCallback)(char enable);
 // };
+
 class RobotArmApp
 {
 private:
@@ -105,6 +106,13 @@ public:
      *
      **************************************/
 public:
+    struct EventFlags{
+        bool event_reseted=false;
+        void clear(){
+            event_reseted=false;
+        }
+    };
+    EventFlags event_flags;
     const uint16_t limitSwitchActivatedCnt_MAX = 100; //用于消抖的限位开关计数值
     void setMotorEnable(char enable);
     bool getMotorEnable();

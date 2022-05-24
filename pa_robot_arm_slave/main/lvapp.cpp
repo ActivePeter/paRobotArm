@@ -11,7 +11,23 @@
 
 #define MY_DISP_HOR_RES 240
 #define MY_DISP_VER_RES 320
-
+namespace check_state
+{
+    void sw_robot_arm_motor_en(lv_obj_t* obj,bool send){
+        appVar.robotArm.setMotorEnable(lv_obj_has_state(obj, LV_STATE_CHECKED));
+        if(send){
+            auto pack=communication::Packs::Pack_SwitchMotorEn(appVar.robotArm.getMotorEnable());
+            Serial.printf("%d %d %d\n",
+                pack.switch_en,
+                lv_obj_has_state(obj, LV_STATE_CHECKED),
+                appVar.robotArm.getMotorEnable());
+            communication::send::send_data(
+                communication::PackIds::SwitchMotorEn,
+                pack
+            );
+        }
+    }
+}
 namespace callback
 {
     void palv_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p)
@@ -78,10 +94,7 @@ namespace callback
         lv_obj_t *obj = lv_event_get_target(e);
         if (code == LV_EVENT_VALUE_CHANGED)
         {
-            appVar.robotArm.setMotorEnable(lv_obj_has_state(obj, LV_STATE_CHECKED));
-            communication::send::send_data(
-                communication::PackIds::SwitchMotorEn,
-            )            
+            check_state::sw_robot_arm_motor_en(obj,true);
             // LV_LOG_USER("State: %s\n", lv_obj_has_state(obj, LV_STATE_CHECKED) ? "On" : "Off");
         }
     }
@@ -193,6 +206,7 @@ namespace lvapp
 
         //开关
         lv_obj_t *sw = lv_switch_create(cont_col);
+        appVar.lvapp_var.sw_robot_arm_motor_en=sw;
         lv_obj_add_event_cb(sw, callback::robot_switch_event_handler, LV_EVENT_ALL, NULL);
     }
     void update_limit_btn_state(
@@ -236,7 +250,17 @@ namespace lvapp
 
         lv_label_set_text(appVar.lvapp_var.label_net, buf);
     }
-
+    void set_robot_arm_motor_en_switch(bool en){
+        if(en){
+            lv_obj_add_state(appVar.lvapp_var.sw_robot_arm_motor_en,
+                            LV_STATE_CHECKED);
+        }else{
+            lv_obj_clear_state(appVar.lvapp_var.sw_robot_arm_motor_en,
+                            LV_STATE_CHECKED);
+        }
+        check_state::sw_robot_arm_motor_en(
+            appVar.lvapp_var.sw_robot_arm_motor_en,false);
+    }
     void tick_update()
     {
         //限位开关数据

@@ -32,18 +32,28 @@ void cpp_main()
     _G_paSPI.init(0);
     _G_paBase.delayMs(10);
     wifi::connect();
+
+    Serial.println("bf tcp");
     tcpclient::connect(appVar.tcp_client);
-    // tcpclient::connect_server();
+    Serial.printf("af tcp %d\n",(int)appVar.tcp_client.connected);
+    
     //外设
-    appVar.lcd.init(0, pa_ILI9341::Rotation_HORIZONTAL_1);
-    appVar.xpt2046.init(240, 320, 3800, 250, 3800, 330, 10);
+    //test//
+      appVar.lcd.init(0, pa_ILI9341::Rotation_HORIZONTAL_1);
+    //test//
+      appVar.xpt2046.init(240, 320, 3800, 250, 3800, 330, 10);
     //机械臂
-    appVar.robotArm.init();
-    appVar.robotArm.setMotorEnable(0);
+    //test//
+      appVar.robotArm.init();
+    //test//
+      appVar.robotArm.setMotorEnable(0);
 
     // // _G_paGPIO.init(N_paGPIO::Mode_Output, RobotArm_GPIO_En0);
     // // _G_paGPIO.write(RobotArm_GPIO_En0, 0);
-    _G_paTimer.initWithCallBack(100, timer_call);
+
+    //test//
+      _G_paTimer.initWithCallBack(100, timer_call);
+    
     // tft.setAddrWindow(0,
     //                   0,
     //                   50,
@@ -61,33 +71,67 @@ void cpp_main()
 #define MAP_NEXT1(item, next) MAP_NEXT0 (item, next, 0)
 #define MAP_NEXT(item, next)  MAP_NEXT1 (MAP_GET_END item, next)
 
-    lv_init();
-    lv_app_init();
+    //test//  
+        lv_init();
+    //test//  
+        lv_app_init();
     // lv_example_anim_2();
-    lvapp::init_all_gui();
+    //test//  
+        lvapp::init_all_gui();
     while (1)
     {
         //     // Serial.write("hello\r\n");
         delay(1);
         {
-            auto&client=appVar.tcp_client.client;
-            if (client.connected())
+            auto&client=
+                appVar.tcp_client;
+                //appVar.tcp_client.client;
+            if (client.connected)
             {
-                if (client.available())
+                static char rxbuf[1000];
+
+                auto reclen=client.recv_(rxbuf,1000);
+                if (reclen>0)
                 {
-                    static char buf[1000];
-                    int wi=0;
-                    while(client.available()){
-                        buf[wi]=client.read();
-                        wi++;
-                    }
-                    auto len = wi;
-                    communication::handle_data(buf, len);
+                    // Serial.printf("datarec ");
+                    // for(int i=0;i<reclen;i++){
+                    //     Serial.printf("%d",(uint8_t)rxbuf[i]);
+                    // }
+                    // Serial.printf("\n");
+                    // Serial.write(rxbuf,reclen);
+                    communication::handle_data(rxbuf,reclen);
                 }
+                // if (client.available())
+                // {
+                    
+                //     int wi=0;
+                //     while(client.available()){
+                //         wi=client.read((uint8_t*)rxbuf,1000);
+                //         // buf[wi]=client.read();
+                //         // wi++;
+                //     }
+                //     auto len = wi;
+                //     communication::handle_data(rxbuf, len);
+                    
+                // }
+                {//检查机械臂event_flags
+                    auto& event_flags=appVar.robotArm.event_flags;
+                    if(event_flags.event_reseted){
+                        auto pack=communication::Packs::Pack_AlreadyReset();
+                        communication::send::send_data(
+                            communication::PackIds::AlreadyReset,
+                            pack
+                        );
+                    }
+
+                    event_flags.clear();
+                }
+                communication::send::flush_all();
                 // _G_paBase.delayMs(10);
             }
         }
-        lvapp::tick_update();
+        //test//
+          lvapp::tick_update();
         // appVar.robotArm.onTimerTick();
     }
 }

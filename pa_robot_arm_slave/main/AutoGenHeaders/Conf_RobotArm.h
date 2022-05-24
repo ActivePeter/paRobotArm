@@ -2,7 +2,7 @@
 #define Conf_RobotArm_h_____
 #define RobotArm_GPIO_LeftArmLimit GPIO_NUM_19
 #define RobotArm_GPIO_RightArmLimit GPIO_NUM_20
-#define RobotArm_GPIO_En0 GPIO_NUM_0
+#define RobotArm_GPIO_En0 GPIO_NUM_12
 #define RobotArm_GPIO_En1 GPIO_NUM_1
 #define RobotArm_GPIO_En2 GPIO_NUM_2
 #define RobotArm_GPIO_Step0 GPIO_NUM_3

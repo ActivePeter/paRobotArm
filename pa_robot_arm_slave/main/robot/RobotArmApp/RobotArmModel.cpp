@@ -22,7 +22,7 @@ void RobotArmModel::recalcVeticalPlane(float x, float y, float z, int &m1Step, i
 
     //垂直面极坐标
     //tan=y/x;
-    float pi_minust1_minust5 = atan2f(y,l3_on_xz);
+    float pi_minust1_minust4 = atan2f(y,l3_on_xz);
 
     // if (theata4plus1 < 0)
     // {
@@ -36,7 +36,8 @@ void RobotArmModel::recalcVeticalPlane(float x, float y, float z, int &m1Step, i
     float theata3plus2 = acosf((l2Square + l1Square - l3Square) / (2 * l1 * l2));
     float theata4 = acosf((l1Square + l3Square - l2Square) / (2 * l1 * l3));
     theata2 = theata3plus2 - theata3;
-    theata1 = theata3plus2+theata4+pi_minust1_minust5;//PI-(PI-theata3plus2-theata4-pi_minust1_minust5);
+    theata1 = PI - pi_minust1_minust4 - theata4; 
+    //theata3plus2+theata4+pi_minust1_minust5;//PI-(PI-theata3plus2-theata4-pi_minust1_minust5);
 
     // theata1=PI_4*3;
     // theata2=PI_4*2- theata3;

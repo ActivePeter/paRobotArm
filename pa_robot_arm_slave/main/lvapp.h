@@ -9,7 +9,8 @@ namespace lvapp
 {
     void init_all_gui();
     void tick_update();
-     void update_recent_cmd_pos();
+    void update_recent_cmd_pos();
+    void set_robot_arm_motor_en_switch(bool en);
 }
 
 #endif // __LVAPP_H__

@@ -98,7 +98,7 @@ void RobotArmApp::setMotorEnable(char enable)
 }
 bool RobotArmApp::getMotorEnable(){
     // when enable a4988 or tb660, pin should be 0
-    return !robotSteppers[0].getEnPin();
+    return this->curMode != Mode::mode_idle;
 }
 
 /***************************
@@ -149,6 +149,7 @@ void RobotArmApp::doStepperEvent(RobotStepper &stepper, bool pinStateOnBackupMod
         {
             curMode = Mode::mode_running;
             sleepTickCnt = 30000;
+            event_flags.event_reseted=true;
             prepareNextMove(true);
             // for (int i = 0; i < 3; i++)
             // {

@@ -2,8 +2,13 @@
 #include "Arduino.h"
 #include "WiFi.h"
 #include "app_var.h"
-const char* ssid ="Redmi_4810";
-const char*password =  "1234567890";
+
+const char* ssid =
+    // "raspface";
+    "Redmi_4810";
+const char*password =  
+    // "12345678";
+    "1234567890";
 
 namespace wifi
 {

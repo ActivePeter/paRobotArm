@@ -12,6 +12,7 @@ struct LvAppVar
 
     lv_obj_t *label_net;//网络状态
 
+    lv_obj_t *sw_robot_arm_motor_en;
     // lv_obj_t *label_robot_arm;
 };
 

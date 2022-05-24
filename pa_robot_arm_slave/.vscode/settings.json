@@ -30,7 +30,8 @@
         "tuple": "cpp",
         "xhash": "cpp",
         "xutility": "cpp",
-        "all": "cpp"
+        "all": "cpp",
+        "istream": "cpp"
     },
     "idf.flashType": "UART"
 }

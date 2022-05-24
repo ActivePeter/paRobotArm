@@ -4,9 +4,13 @@
 struct TcpClient{
     WiFiClient client;
     bool connected=false;
+    int sock=-1;
+    int recv_(char * data,int len);
+    int send_(char * data,int len);
+    void close_();
 };
 namespace tcpclient{
     void recv_loop();
-    void connect(TcpClient &client);
+    bool connect(TcpClient &client);
 }
 #endif // __TCPCLIENT_H__
